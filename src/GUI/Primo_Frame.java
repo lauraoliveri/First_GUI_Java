@@ -24,21 +24,41 @@ public class Primo_Frame extends JFrame {
             // to see the frame once we run the app (always last)
             setVisible(true);
 
-            // creation of a button
-            JButton button = new JButton("Cliccami");
+            initComponents();
+        }
 
-            JTextArea text = new JTextArea();
+        private void initComponents() {
+            // container
+            JPanel panel = new JPanel();
+
+            JLabel label = new JLabel("Come ti chiami?");
+
+            JTextField text = new JTextField(20);
+
+            // creation of a button
+            JButton button = new JButton("Saluta");
 
             // adding button to app
             add(button,BorderLayout.PAGE_START);
 
-            add(text,BorderLayout.CENTER);
+            JLabel nameLabel = new JLabel("");
 
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    text.append("Ciao!!" + "\n" );
-                }
+            add(text);
+
+            // aggiungi tutti gli elementi al pannello
+            panel.add(label);
+            panel.add(text);
+            panel.add(button);
+            panel.add(nameLabel);
+
+            // aggiungi il pannello al frame
+            add(panel);
+
+            button.addActionListener( e -> {
+                String helloText = text.getText();  // prende il testo dal campo
+                nameLabel.setText("Ciao " + helloText + " <3");
             });
+
         }
 }
 
